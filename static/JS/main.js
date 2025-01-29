@@ -35,7 +35,7 @@ function listarTarefas(status){
                         <p>${tarefa.getDescricao()}</p>
                         <div class="marcarConcluidaContainer">
                             <input type="checkbox" class="marcarConcluida" id="${index}">
-                            <label for="marcarConcluida">Marcar como Concluída</label>
+                            <label for="${index}">Marcar como Concluída</label>
                         </div>
                     </div>
                 `;
