@@ -1,7 +1,7 @@
 import {Tarefa} from './classes/tarefa.js';
 
 
-//Criar tarefas e adicionálas a lista principal
+//Criar tarefas e adicioná-las a lista principal
 const tarefas = [];
 
 function criarTarefa(){ 
@@ -26,14 +26,15 @@ function listarTarefas(status){
     if(!!tarefas.length){
         if(status === true){
             let htmlTarefas = '';
+            main.innerHTML = htmlTarefas;
             tarefas.forEach((tarefa, index) => {
                 htmlTarefas += `
                     <div class="card">
                         <h2>${tarefa.getNome()}</h2>
-                        <h4>Data: ${tarefa.getData()} </h4>
+                        <h4>Data de criação: ${tarefa.getData()} </h4>
                         <p>${tarefa.getDescricao()}</p>
                         <div class="marcarConcluidaContainer">
-                            <input type="checkbox" class="marcarConcluida" id="${index}" value="checked">
+                            <input type="checkbox" class="marcarConcluida" id="${index}">
                             <label for="marcarConcluida">Marcar como Concluída</label>
                         </div>
                     </div>
@@ -48,11 +49,11 @@ function listarTarefas(status){
                     htmlTarefas += `
                         <div class="card">
                             <h2>${tarefa.getNome()}</h2>
-                            <h4>Data: ${tarefa.getData()} </h4>
+                            <h4>Data de criação: ${tarefa.getData()} </h4>
                             <p>${tarefa.getDescricao()}</p>
                             <div class="marcarConcluidaContainer">
                                 <input type="checkbox" class="marcarConcluida" id="${index}">
-                                <label for="marcarConcluida">Marcar como Concluída</label>
+                                <label for="${index}">Marcar como Concluída</label>
                             </div>
                         </div>
                     `;
@@ -120,8 +121,10 @@ function atualizarStatus(){
             const id = event.target.id;
             if (event.target.checked) {
                 tarefas[id].setStatus('checked');
+                console.log(tarefas[id]);
             } else {
                 tarefas[id].setStatus('unchecked');
+                console.log(tarefas[id]);
             }
         });
     });
