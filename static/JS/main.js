@@ -22,14 +22,14 @@ function listarTarefas(status){
     if(!!tarefas.length){
         if(status === true){
             let htmlTarefas = '';
-            tarefas.forEach((tarefa) => {
+            tarefas.forEach((tarefa, index) => {
                 htmlTarefas += `
                     <div class="card">
                         <h2>${tarefa.getNome()}</h2>
                         <h4>Data: ${tarefa.getData()} </h4>
                         <p>${tarefa.getDescricao()}</p>
                         <div class="marcarConcluidaContainer">
-                            <input type="checkbox" id="marcarConcluida" value="${tarefa.getStatus()}">
+                            <input type="checkbox" class="marcarConcluida" id="${index}" value="${tarefa.getStatus()}">
                             <label for="marcarConcluida">Marcar como Concluída</label>
                         </div>
                     </div>
@@ -37,6 +37,7 @@ function listarTarefas(status){
             });
             main.innerHTML = htmlTarefas;
         }
+        atualizarStatus();
     }
 }
 
@@ -75,6 +76,7 @@ btnTodasTarefas.addEventListener('click', () => {
 });
 //------------------------------------
 
+//Verifica quando uma nova tarefa e enviada, aciona função de criação, esconde e limpa o formulário
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     criarTarefa();
@@ -83,3 +85,18 @@ form.addEventListener('submit', (event) => {
     document.getElementById('name').value = '';
     document.getElementById('descricao').value = '';
 });
+//-------------------------------------
+
+//Atualiza o status da tarefa (checked/unchecked)
+function atualizarStatus(){
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener('change', function(event) {
+            const id = event.target.id;
+            if (event.target.checked) {
+                tarefas[id].setStatus('checked');
+            } else {
+                tarefas[id].setStatus('unchecked');
+            }
+        });
+    });
+};

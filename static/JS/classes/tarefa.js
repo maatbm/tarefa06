@@ -21,4 +21,8 @@ export class Tarefa {
     getStatus() {
         return this.status;
     }
+
+    setStatus(status){
+        this.status = status;
+    }
 }
