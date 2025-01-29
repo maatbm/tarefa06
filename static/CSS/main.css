@@ -14,6 +14,7 @@
     --lightPurple: #7B2CBF;
     --whiteGold: #F9F3D1;
     --fog: #C3BBB5;
+    --green: #83E509;    
 }
 
 body {
@@ -23,10 +24,6 @@ body {
     padding-top: 8rem;
     padding-bottom: 3rem;
     overflow: hidden;
-}
-
-::-webkit-scrollbar{
-    display: none;
 }
 
 header {
@@ -87,7 +84,7 @@ main {
     gap: 1rem;
     background-color: var(--whiteGold);
     box-shadow: 0px 0px 10px var(--purple);
-    transition: transform 0.5s;
+    transition: 0.5s;
 }
 
 .card:hover{
@@ -101,6 +98,42 @@ main {
 .card>p{
     text-align: justify;
     text-indent: 1rem;
+}
+
+.marcarConcluidaContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#marcarConcluida{
+    width: 1.8rem;
+    height: 1.8rem;
+    appearance: none;
+    border: 2px solid var(--purple);
+    border-radius: 0.25rem;
+    background-color: var(--white);
+    cursor: pointer;
+    position: relative;
+}
+
+#marcarConcluida:checked{
+    background-color: var(--green);
+}
+
+#marcarConcluida:checked::after {
+    content: '✔';
+    color: var(--white);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.marcarConcluidaContainer>label{
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 footer {
