@@ -90,7 +90,7 @@ main {
     display: none;
 }
 
-#criarTarefaContainer .formContainer {
+.formContainer {
     background: var(--white);
     padding: 2rem;
     border-radius: 1rem;
@@ -104,26 +104,26 @@ main {
     text-align: center;
 }
 
-#criarTarefaContainer .formContainer form {
+.formContainer form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#criarTarefaContainer .formContainer .inputContainer {
+.inputContainer {
     position: relative;
     width: 100%;
     margin-bottom: 0.8rem;
 }
 
-#criarTarefaContainer .formContainer .inputContainer input {
+.inputContainer input {
     background-color: transparent;
     border-bottom: solid 2px var(--purple);
     width: 100%;
 }
 
-#criarTarefaContainer .formContainer .inputContainer label {
+.inputContainer label {
     position: absolute;
     top: 0;
     left: 0;
@@ -133,7 +133,7 @@ main {
     transition: 0.5s;
 }
 
-#criarTarefaContainer .formContainer .inputContainer #name:focus~label,
+.inputContainer #name:focus~label,
 #name:valid~label {
     top: -0.8rem;
     left: 0;
@@ -141,18 +141,18 @@ main {
     font-size: 0.8rem;
 }
 
-#criarTarefaContainer .formContainer .inputContainer #data {
+.inputContainer #data {
     margin-top: 1.5rem;
 }
 
-#criarTarefaContainer .formContainer .inputContainer #data+label {
+.inputContainer #data+label {
     position: static;
     margin-bottom: 0.5rem;
     font-size: 1rem;
     color: var(--purple);
 }
 
-#criarTarefaContainer .formContainer textarea {
+.formContainer textarea {
     width: 100%;
     height: 10rem;
     border-radius: 0.5rem;
@@ -162,7 +162,7 @@ main {
     margin-top: 0.2rem;
 }
 
-#criarTarefaContainer .formContainer button {
+.formContainer button {
     width: 90%;
     background-color: var(--purple);
     color: var(--white);
@@ -176,18 +176,8 @@ main {
     margin-bottom: 2rem;
 }
 
-#criarTarefaContainer .formContainer button:hover {
+.formContainer button:hover {
     background-color: var(--lightPurple);
-}
-
-textarea {
-    width: 100%;
-    height: 10rem;
-    border-radius: 0.5rem;
-    border: 2px solid var(--purple);
-    padding: 0.5rem;
-    resize: none;
-    margin-top: 0.2rem;
 }
 
 .inputContainer>input {
