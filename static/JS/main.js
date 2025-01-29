@@ -1,15 +1,22 @@
 import './classes/tarefa.js';
 
-const main = document.getElementById('main')
+const main = document.getElementById('main');
 const tarefas = [];
 
-
-
-
 const btnExibirTelaCriarTarefa = document.getElementById('btnExibirTelaCriarTarefa');
+const criarTarefaContainer = document.getElementById('criarTarefaContainer');
+const formContainer = document.getElementById('formContainer');
 
 btnExibirTelaCriarTarefa.addEventListener('click', () => {
-    
+    criarTarefaContainer.style.display = 'flex';
+    criarTarefaContainer.style.zIndex = '1';
+});
+
+criarTarefaContainer.addEventListener('click', (event) => {
+    if (!formContainer.contains(event.target)) {
+        criarTarefaContainer.style.display = 'none';
+        criarTarefaContainer.style.zIndex = '-1';
+    }
 });
 
 const btnOrdenarPendentes = document.getElementById('btnOrdenarPendentes');

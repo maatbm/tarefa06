@@ -76,46 +76,54 @@ main {
 }
 
 #criarTarefaContainer {
-    grid-area: criarTarefa;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1fr;
-    z-index: 1000;
-    background: blur(15px);
-}
-
-textarea {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 10rem;
-    border-radius: 0.5rem;
-    border: 2px solid var(--purple);
-    padding: 0.5rem;
-    resize: none;
-    margin-top: 0.2rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: -1;
+    display: none;
 }
 
-
-fieldset {
-    width: 90%;
+#criarTarefaContainer .formContainer {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 1px var(--purple);
-    border-radius: 1rem;
-    padding: 1rem;
-    color: var(--white);
+    color: var(--purple);
     font-weight: bold;
     text-align: center;
 }
 
-.input-container>input {
+#criarTarefaContainer .formContainer form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#criarTarefaContainer .formContainer .inputContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+#criarTarefaContainer .formContainer .inputContainer input {
     background-color: transparent;
     border-bottom: solid 2px var(--purple);
     width: 100%;
 }
 
-.input-container label {
+#criarTarefaContainer .formContainer .inputContainer label {
     position: absolute;
     top: 0;
     left: 0;
@@ -125,7 +133,7 @@ fieldset {
     transition: 0.5s;
 }
 
-.input-container #name:focus~label,
+#criarTarefaContainer .formContainer .inputContainer #name:focus~label,
 #name:valid~label {
     top: -0.8rem;
     left: 0;
@@ -133,37 +141,28 @@ fieldset {
     font-size: 0.8rem;
 }
 
-.input-container #data {
+#criarTarefaContainer .formContainer .inputContainer #data {
     margin-top: 1.5rem;
 }
 
-.input-container #data+label {
+#criarTarefaContainer .formContainer .inputContainer #data+label {
     position: static;
     margin-bottom: 0.5rem;
     font-size: 1rem;
     color: var(--purple);
 }
 
-fieldset>form {
+#criarTarefaContainer .formContainer textarea {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--purple);
+    padding: 0.5rem;
+    resize: none;
+    margin-top: 0.2rem;
 }
 
-.input-container {
-    position: relative;
-    width: 100%;
-    margin-bottom: 0.8rem;
-}
-
-fieldset>legend {
-    text-align: center;
-    font-size: 1.5rem;
-    color: var (--brown);
-}
-
-fieldset>form>button {
+#criarTarefaContainer .formContainer button {
     width: 90%;
     background-color: var(--purple);
     color: var(--white);
@@ -177,16 +176,60 @@ fieldset>form>button {
     margin-bottom: 2rem;
 }
 
-fieldset>form>button:hover {
+#criarTarefaContainer .formContainer button:hover {
     background-color: var(--lightPurple);
 }
 
-fieldset>span {
-    font-size: 0.8rem;
-    color: var(--brown);
-    margin-bottom: 0.5rem;
+textarea {
+    width: 100%;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--purple);
+    padding: 0.5rem;
+    resize: none;
+    margin-top: 0.2rem;
 }
 
+.inputContainer>input {
+    background-color: transparent;
+    border-bottom: solid 2px var(--purple);
+    width: 100%;
+}
+
+.inputContainer label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    color: var(--lightPurple);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.inputContainer #name:focus~label,
+#name:valid~label {
+    top: -0.8rem;
+    left: 0;
+    color: var(--purple);
+    font-size: 0.8rem;
+}
+
+.inputContainer #data {
+    margin-top: 1.5rem;
+}
+
+.inputContainer #data+label {
+    position: static;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--purple);
+}
+
+.inputContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
 
 .card {
     width: 100%;
