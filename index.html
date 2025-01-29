@@ -1,32 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="screen" href="static/CSS/main.css">
     <title>Tarefa 06</title>
 </head>
+
 <body>
     <header>
         <h1>Lista de tarefas</h1>
-        <button class="criarTarefa">Criar nova tarefa</button>
+        <button class="criarTarefa" id="btnExibirTelaCriarTarefa">Criar nova tarefa</button>
         <button class="ordenar" id="btnOrdenarPendentes">Exibir apenas tarefas pendentes</button>
         <button class="ordenar" id="btnTodasTarefas">Exibir todas as tarefas</button>
     </header>
-    <main>
-        <div class="card">
+    <main id="main">
+        <div id="criarTarefaContainer">
+            <fieldset>
+                <legend>Criar uma nova tarefa</legend>
+                <form id="form">
+                    <div class="input-container">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name" class="label-animation">Nome da tarefa</label>
+                    </div>
+                    <div class="input-container">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <label for="descricao">Descrição rápida</label>
+                    <textarea id="descricao" name="descricao" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </fieldset>
+        </div>
+        <!-- <div class="card">
             <h2>Título</h2>
             <h4>Data: </h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam culpa repellendus temporibus facere sunt animi optio perferendis! Earum nemo molestias velit aliquid assumenda hic, consequuntur iusto, cum quisquam debitis cumque?</p>
+            <p></p>
             <div class="marcarConcluidaContainer">
-            <input type="checkbox" id="marcarConcluida">
-            <label for="marcarConcluida">Marcar como Concluída</label>
+                <input type="checkbox" id="marcarConcluida">
+                <label for="marcarConcluida">Marcar como Concluída</label>
             </div>
-        </div>
+        </div> -->
     </main>
     <footer>
         <h2>Todos os direitos reservados a ©️Copyright</h2>
     </footer>
-<script src="static/JS/main.js"></script>
+    <script src="static/JS/main.js" type="module"></script>
 </body>
+
 </html>
