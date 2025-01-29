@@ -1,7 +1,7 @@
 import {Tarefa} from './classes/tarefa.js';
 
-const main = document.getElementById('main');
-const form = document.getElementById('form');
+
+//Criar tarefas e adicionálas a lista principal
 const tarefas = [];
 
 function criarTarefa(){ 
@@ -17,6 +17,10 @@ function criarTarefa(){
 
     listarTarefas(true);
 }
+//-----------------------------------------
+
+//Listar as tarefas com base no filtro todas/unchecked
+const main = document.getElementById('main');
 
 function listarTarefas(status){
     if(!!tarefas.length){
@@ -29,17 +33,37 @@ function listarTarefas(status){
                         <h4>Data: ${tarefa.getData()} </h4>
                         <p>${tarefa.getDescricao()}</p>
                         <div class="marcarConcluidaContainer">
-                            <input type="checkbox" class="marcarConcluida" id="${index}" value="${tarefa.getStatus()}">
+                            <input type="checkbox" class="marcarConcluida" id="${index}" value="checked">
                             <label for="marcarConcluida">Marcar como Concluída</label>
                         </div>
                     </div>
                 `;
             });
             main.innerHTML = htmlTarefas;
+        }else{
+            let htmlTarefas = '';
+            main.innerHTML = htmlTarefas;
+            tarefas.forEach((tarefa, index) => {
+                if(tarefa.getStatus() == 'unchecked'){
+                    htmlTarefas += `
+                        <div class="card">
+                            <h2>${tarefa.getNome()}</h2>
+                            <h4>Data: ${tarefa.getData()} </h4>
+                            <p>${tarefa.getDescricao()}</p>
+                            <div class="marcarConcluidaContainer">
+                                <input type="checkbox" class="marcarConcluida" id="${index}">
+                                <label for="marcarConcluida">Marcar como Concluída</label>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            main.innerHTML = htmlTarefas;
         }
         atualizarStatus();
     }
 }
+//---------------------------------
 
 //Exibir e ocultar o formulário para criação de novas tarefas
 const btnExibirTelaCriarTarefa = document.getElementById('btnExibirTelaCriarTarefa');
@@ -77,6 +101,8 @@ btnTodasTarefas.addEventListener('click', () => {
 //------------------------------------
 
 //Verifica quando uma nova tarefa e enviada, aciona função de criação, esconde e limpa o formulário
+const form = document.getElementById('form');
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     criarTarefa();
