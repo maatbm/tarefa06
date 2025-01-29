@@ -24,43 +24,24 @@ const main = document.getElementById('main');
 
 function listarTarefas(status){
     if(!!tarefas.length){
-        if(status === true){
-            let htmlTarefas = '';
-            main.innerHTML = htmlTarefas;
-            tarefas.forEach((tarefa, index) => {
+        let htmlTarefas = '';
+        main.innerHTML = htmlTarefas;
+        tarefas.forEach((tarefa, index) => {
+            if(status === true || tarefa.getStatus() === 'unchecked'){
                 htmlTarefas += `
                     <div class="card">
                         <h2>${tarefa.getNome()}</h2>
                         <h4>Data de criação: ${tarefa.getData()} </h4>
                         <p>${tarefa.getDescricao()}</p>
                         <div class="marcarConcluidaContainer">
-                            <input type="checkbox" class="marcarConcluida" id="${index}">
+                            <input type="checkbox" class="marcarConcluida" id="${index}" ${tarefa.getStatus() === 'checked' ? 'checked' : ''}>
                             <label for="${index}">Marcar como Concluída</label>
                         </div>
                     </div>
                 `;
-            });
-            main.innerHTML = htmlTarefas;
-        }else{
-            let htmlTarefas = '';
-            main.innerHTML = htmlTarefas;
-            tarefas.forEach((tarefa, index) => {
-                if(tarefa.getStatus() == 'unchecked'){
-                    htmlTarefas += `
-                        <div class="card">
-                            <h2>${tarefa.getNome()}</h2>
-                            <h4>Data de criação: ${tarefa.getData()} </h4>
-                            <p>${tarefa.getDescricao()}</p>
-                            <div class="marcarConcluidaContainer">
-                                <input type="checkbox" class="marcarConcluida" id="${index}">
-                                <label for="${index}">Marcar como Concluída</label>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            main.innerHTML = htmlTarefas;
-        }
+            }
+        });
+        main.innerHTML = htmlTarefas;
         atualizarStatus();
     }
 }
