@@ -123,16 +123,6 @@ main {
     width: 100%;
 }
 
-.inputContainer label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1rem;
-    color: var(--lightPurple);
-    pointer-events: none;
-    transition: 0.5s;
-}
-
 .inputContainer #name:focus~label,
 #name:valid~label {
     top: -0.8rem;
@@ -202,17 +192,6 @@ main {
     left: 0;
     color: var(--purple);
     font-size: 0.8rem;
-}
-
-.inputContainer #data {
-    margin-top: 1.5rem;
-}
-
-.inputContainer #data+label {
-    position: static;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: var(--purple);
 }
 
 .inputContainer {
