@@ -1,120 +1,106 @@
-import {Tarefa} from './classes/tarefa.js';
+import { Task } from './classes/tarefa.js';
 
-//Cria a lista de tarefas e encapsula as funções necessárias de trabalho
-const arrayTarefas = (() => {
-    const tarefas = [];
+const taskArray = (() => {
+    const tasks = [];
 
-    function add(object){
-        tarefas.push(object);
+    function add(object) {
+        tasks.push(object);
     }
 
-    function read(){
-        return tarefas;
+    function read() {
+        return tasks;
     }
 
-    return {add, read};
+    return { add, read };
 })();
-//-----------------------------------------
 
-//Criar tarefas e adicioná-las a lista principal
-function criarTarefa(){ 
-    let nome = document.getElementById('name').value;
-    let dataAtual = new Date();
-    let data = dataAtual.getDate() +'/'+ (dataAtual.getMonth()+1) + '/' + dataAtual.getFullYear();
-    let descricao = document.getElementById('descricao').value;
+function createTask() {
+    let name = document.getElementById('name').value;
+    let currentDate = new Date();
+    let date = currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear();
+    let description = document.getElementById('description').value;
     let status = 'unchecked';
 
-    const novaTarefa = new Tarefa(nome, data, descricao, status);
+    const newTask = new Task(name, date, description, status);
 
-    arrayTarefas.add(novaTarefa);
+    taskArray.add(newTask);
 
-    listarTarefas(true);
+    listTasks(true);
 }
-//-----------------------------------------
 
-//Listar as tarefas com base no filtro todas/unchecked
 const main = document.getElementById('main');
-
-function listarTarefas(status){
-    if(!!arrayTarefas.read().length){
-        let htmlTarefas = '';
-        main.innerHTML = htmlTarefas;
-        arrayTarefas.read().forEach((tarefa, index) => {
-            if(status === true || tarefa.getStatus() === 'unchecked'){
-                htmlTarefas += `
+function listTasks(status) {
+    if (!!taskArray.read().length) {
+        let taskHtml = '';
+        main.innerHTML = taskHtml;
+        taskArray.read().forEach((task, index) => {
+            if (status === true || task.getStatus() === 'unchecked') {
+                taskHtml += `
                     <div class="card">
-                        <h2>${tarefa.getNome()}</h2>
-                        <h4>Data de criação: ${tarefa.getData()} </h4>
-                        <p>${tarefa.getDescricao()}</p>
-                        <div class="marcarConcluidaContainer">
-                            <input type="checkbox" class="marcarConcluida" id="${index}" ${tarefa.getStatus() === 'checked' ? 'checked' : ''}>
-                            <label for="${index}">Marcar como Concluída</label>
+                        <h2>${task.getName()}</h2>
+                        <h4>Data de criação: ${task.getDate()} </h4>
+                        <p>${task.getDescription()}</p>
+                        <div class="markCompletedContainer">
+                            <input type="checkbox" class="markCompleted" id="${index}" ${task.getStatus() === 'checked' ? 'checked' : ''}>
+                            <label for="${index}">Concluída</label>
                         </div>
                     </div>
                 `;
             }
         });
-        main.innerHTML = htmlTarefas;
-        atualizarStatus();
+        main.innerHTML = taskHtml;
+        updateStatus();
     }
 }
-//---------------------------------
 
-//Exibir e ocultar o formulário para criação de novas tarefas
-const btnExibirTelaCriarTarefa = document.getElementById('btnExibirTelaCriarTarefa');
-const criarTarefaContainer = document.getElementById('criarTarefaContainer');
+const btnShowCreateTaskScreen = document.getElementById('btnShowCreateTaskScreen');
+const createTaskContainer = document.getElementById('createTaskContainer');
 const formContainer = document.getElementById('formContainer');
 
-btnExibirTelaCriarTarefa.addEventListener('click', () => {
-    criarTarefaContainer.style.display = 'flex';
-    criarTarefaContainer.style.zIndex = '1';
+btnShowCreateTaskScreen.addEventListener('click', () => {
+    createTaskContainer.style.display = 'flex';
+    createTaskContainer.style.zIndex = '1';
 });
 
-criarTarefaContainer.addEventListener('click', (event) => {
+createTaskContainer.addEventListener('click', (event) => {
     if (!formContainer.contains(event.target)) {
-        criarTarefaContainer.style.display = 'none';
-        criarTarefaContainer.style.zIndex = '-1';
+        createTaskContainer.style.display = 'none';
+        createTaskContainer.style.zIndex = '-1';
     }
 });
-//--------------------------------
 
-//Botões para ordenar as tarefas de acordo com o status
-const btnOrdenarPendentes = document.getElementById('btnOrdenarPendentes');
-const btnTodasTarefas = document.getElementById('btnTodasTarefas');
+const btnSortPending = document.getElementById('btnSortPending');
+const btnAllTasks = document.getElementById('btnAllTasks');
 
-btnOrdenarPendentes.addEventListener('click', () => {
-    btnOrdenarPendentes.style.display = 'none';
-    btnTodasTarefas.style.display = 'block';
-    listarTarefas(false);
+btnSortPending.addEventListener('click', () => {
+    btnSortPending.style.display = 'none';
+    btnAllTasks.style.display = 'block';
+    listTasks(false);
 });
 
-btnTodasTarefas.addEventListener('click', () => {
-    btnOrdenarPendentes.style.display = 'block';
-    btnTodasTarefas.style.display = 'none';
-    listarTarefas(true);
+btnAllTasks.addEventListener('click', () => {
+    btnSortPending.style.display = 'block';
+    btnAllTasks.style.display = 'none';
+    listTasks(true);
 });
-//------------------------------------
 
-//Verifica quando uma nova tarefa e enviada, aciona função de criação, esconde e limpa o formulário
 document.getElementById('form').addEventListener('submit', (event) => {
     event.preventDefault();
-    criarTarefa();
-    criarTarefaContainer.style.display = 'none';
-    criarTarefaContainer.style.zIndex = '-1';
+    createTask();
+    createTaskContainer.style.display = 'none';
+    createTaskContainer.style.zIndex = '-1';
     document.getElementById('name').value = '';
-    document.getElementById('descricao').value = '';
+    document.getElementById('description').value = '';
 });
-//-------------------------------------
 
-//Atualiza o status da tarefa (checked/unchecked)
-function atualizarStatus(){
+function updateStatus() {
     document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
         checkbox.addEventListener('change', function(event) {
             const id = event.target.id;
             if (event.target.checked) {
-                arrayTarefas.read()[id].setStatus('checked');
+                taskArray.read()[id].setStatus('checked');
             } else {
-                arrayTarefas.read()[id].setStatus('unchecked');
+                taskArray.read()[id].setStatus('unchecked');
             }
         });
     });

@@ -11,19 +11,19 @@
 <body>
     <header>
         <h1>Lista de tarefas</h1>
-        <button class="criarTarefa" id="btnExibirTelaCriarTarefa">Criar nova tarefa</button>
-        <button class="ordenar" id="btnOrdenarPendentes">Exibir apenas tarefas pendentes</button>
-        <button class="ordenar" id="btnTodasTarefas">Exibir todas as tarefas</button>
+        <button class="createTask" id="btnShowCreateTaskScreen">Criar nova tarefa</button>
+        <button class="sort" id="btnSortPending">Mostrar apenas pendentes</button>
+        <button class="sort" id="btnAllTasks">Mostrar tudo</button>
     </header>
-    <div id="criarTarefaContainer">
+    <div id="createTaskContainer">
         <div class="formContainer" id="formContainer">
             <form id="form" method="post">
                 <div class="inputContainer">
                     <input type="text" id="name" name="name" required autocomplete="off">
                     <label for="name" class="labelAnimation">Nome da tarefa</label>
                 </div>
-                <label for="descricao">Descrição rápida</label>
-                <textarea id="descricao" name="descricao" required></textarea>
+                <label for="description">Descrição rápida</label>
+                <textarea id="description" name="description" required></textarea>
                 <button type="submit">Criar</button>
             </form>
         </div>

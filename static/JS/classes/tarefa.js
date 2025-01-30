@@ -1,28 +1,28 @@
-export class Tarefa {
-    constructor(nome, data, descricao, status) {
-        this.nome = nome;
-        this.data = data;
-        this.descricao = descricao
+export class Task {
+    constructor(name, date, description, status) {
+        this.name = name;
+        this.date = date;
+        this.description = description;
         this.status = status;
     }
 
-    getNome() {
-        return this.nome;
+    getName() {
+        return this.name;
     }
 
-    getData() {
-        return this.data;
+    getDate() {
+        return this.date;
     }
 
-    getDescricao(){
-        return this.descricao;
+    getDescription() {
+        return this.description;
     }
 
     getStatus() {
         return this.status;
     }
 
-    setStatus(status){
+    setStatus(status) {
         this.status = status;
     }
 }
