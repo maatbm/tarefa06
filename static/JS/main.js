@@ -83,9 +83,7 @@ btnTodasTarefas.addEventListener('click', () => {
 //------------------------------------
 
 //Verifica quando uma nova tarefa e enviada, aciona função de criação, esconde e limpa o formulário
-const form = document.getElementById('form');
-
-form.addEventListener('submit', (event) => {
+document.getElementById('form').addEventListener('submit', (event) => {
     event.preventDefault();
     criarTarefa();
     criarTarefaContainer.style.display = 'none';
