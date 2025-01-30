@@ -288,20 +288,25 @@ footer {
     .marcarConcluidaContainer>label {
         font-size: 0.7rem;
     }
-    .formContainer{
+
+    .formContainer {
         width: 40%;
     }
+
     @media screen and (max-width: 800px) {
         main {
             grid-template-columns: repeat(3, 1fr);
         }
+
         header>button {
             font-size: 1rem;
             padding: 0.5rem;
         }
-        .formContainer{
+
+        .formContainer {
             width: 50%;
         }
+
         footer {
             font-size: 1rem;
         }
@@ -311,9 +316,11 @@ footer {
         main {
             grid-template-columns: repeat(2, 1fr);
         }
-        .formContainer{
+
+        .formContainer {
             width: 50%;
         }
+
         footer {
             font-size: 0.8rem;
         }
@@ -331,9 +338,11 @@ footer {
         header>button {
             font-size: 0.7rem;
         }
-        .formContainer{
+
+        .formContainer {
             width: 80%;
         }
+
         footer {
             font-size: 0.5rem;
         }
