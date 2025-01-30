@@ -1,9 +1,22 @@
 import {Tarefa} from './classes/tarefa.js';
 
+//Cria a lista de tarefas e encapsula as funções necessárias de trabalho
+const arrayTarefas = (() => {
+    const tarefas = [];
+
+    function add(object){
+        tarefas.push(object);
+    }
+
+    function read(){
+        return tarefas;
+    }
+
+    return {add, read};
+})();
+//-----------------------------------------
 
 //Criar tarefas e adicioná-las a lista principal
-const tarefas = [];
-
 function criarTarefa(){ 
     let nome = document.getElementById('name').value;
     let dataAtual = new Date();
@@ -13,7 +26,7 @@ function criarTarefa(){
 
     const novaTarefa = new Tarefa(nome, data, descricao, status);
 
-    tarefas.push(novaTarefa);
+    arrayTarefas.add(novaTarefa);
 
     listarTarefas(true);
 }
@@ -23,10 +36,10 @@ function criarTarefa(){
 const main = document.getElementById('main');
 
 function listarTarefas(status){
-    if(!!tarefas.length){
+    if(!!arrayTarefas.read().length){
         let htmlTarefas = '';
         main.innerHTML = htmlTarefas;
-        tarefas.forEach((tarefa, index) => {
+        arrayTarefas.read().forEach((tarefa, index) => {
             if(status === true || tarefa.getStatus() === 'unchecked'){
                 htmlTarefas += `
                     <div class="card">
@@ -99,11 +112,9 @@ function atualizarStatus(){
         checkbox.addEventListener('change', function(event) {
             const id = event.target.id;
             if (event.target.checked) {
-                tarefas[id].setStatus('checked');
-                console.log(tarefas[id]);
+                arrayTarefas.read()[id].setStatus('checked');
             } else {
-                tarefas[id].setStatus('unchecked');
-                console.log(tarefas[id]);
+                arrayTarefas.read()[id].setStatus('unchecked');
             }
         });
     });
