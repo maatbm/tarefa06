@@ -1,4 +1,4 @@
-import { Task } from './classes/tarefa.js';
+import { Task } from './classes/Task.js';
 
 const taskArray = (() => {
     const tasks = [];
