@@ -275,3 +275,19 @@ footer {
     bottom: 0;
     left: 0;
 }
+
+@media screen and (max-width: 1114px) {
+    header>h1 {
+        font-size: 2rem;
+    }
+
+    .marcarConcluidaContainer>label {
+        font-size: 0.7rem;
+    }
+
+    @media screen and (max-width: 800px) {
+        main {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
