@@ -1,47 +1,32 @@
-import { Task } from './classes/Task.js';
-
-const taskArray = (() => {
-    const tasks = [];
-
-    function add(object) {
-        tasks.push(object);
-    }
-
-    function read() {
-        return tasks;
-    }
-
-    return { add, read };
-})();
+const arrayTasks = [];
 
 function createTask() {
     let name = document.getElementById('name').value;
     let currentDate = new Date();
     let date = currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear();
     let description = document.getElementById('description').value;
-    let status = 'unchecked';
 
-    const newTask = new Task(name, date, description, status);
+    const newTask = {name: name, date: date, description: description, status: 'unchecked'}
 
-    taskArray.add(newTask);
+    arrayTasks.push(newTask);
 
     listTasks(true);
 }
 
 const main = document.getElementById('main');
 function listTasks(status) {
-    if (!!taskArray.read().length) {
+    if (!!arrayTasks.length) {
         let taskHtml = '';
         main.innerHTML = taskHtml;
-        taskArray.read().forEach((task, index) => {
-            if (status === true || task.getStatus() === 'unchecked') {
+        arrayTasks.forEach((task, index) => {
+            if (status === true || task.status === 'unchecked') {
                 taskHtml += `
                     <div class="card">
-                        <h2>${task.getName()}</h2>
-                        <h4>Data de criação: ${task.getDate()} </h4>
-                        <p>${task.getDescription()}</p>
+                        <h2>${task.name}</h2>
+                        <h4>Data de criação: ${task.date} </h4>
+                        <p>${task.description}</p>
                         <div class="markCompletedContainer">
-                            <input type="checkbox" class="markCompleted" id="${index}" ${task.getStatus() === 'checked' ? 'checked' : ''}>
+                            <input type="checkbox" class="markCompleted" id="${index}" ${task.status === 'checked' ? 'checked' : ''}>
                             <label for="${index}">Concluída</label>
                         </div>
                     </div>
@@ -98,9 +83,11 @@ function updateStatus() {
         checkbox.addEventListener('change', function(event) {
             const id = event.target.id;
             if (event.target.checked) {
-                taskArray.read()[id].setStatus('checked');
+                arrayTasks[id].status = 'checked';
+                console.log(arrayTasks[id]);
             } else {
-                taskArray.read()[id].setStatus('unchecked');
+                arrayTasks[id].status = 'unchecked';
+                console.log(arrayTasks[id]);
             }
         });
     });
